@@ -7,6 +7,7 @@ const notFoundMiddleWare = require("./middlewares/notFound");
 const authenticationMiddleWare = require("./middlewares/auth");
 const errorHandlerMiddleWare = require("./middlewares/globalErrorHandler");
 const auth = require("./routes/authRouter");
+const demo = require("./routes/demoRouter");
 
 const app = express();
 
@@ -17,7 +18,7 @@ app.use(express.json());
 // routes
 app.use("/api/auth", auth);
 app.use(authenticationMiddleWare);
-app.use("/api/demo-controller");
+app.use("/api/demo-controller", demo);
 
 app.use(notFoundMiddleWare);
 app.use(errorHandlerMiddleWare);
