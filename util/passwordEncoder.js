@@ -2,8 +2,7 @@ const bcrypt = require("bcrypt");
 const saltRounds = 10;
 
 const passwordEncoder = async (password) => {
-    const hash = await bcrypt.hash(password, saltRounds);
-    return hash;
+    return await bcrypt.hash(password, saltRounds);
 }
 
 module.exports = passwordEncoder;
