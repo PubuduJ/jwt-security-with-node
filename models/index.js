@@ -1,4 +1,5 @@
 const dbConfig = require("../configs/dbConfig");
+const userModel = require("./userModel");
 
 const {Sequelize, DataTypes} = require("sequelize");
 
@@ -17,6 +18,7 @@ const sequelize = new Sequelize(
 
 const db = {
     sequelize: sequelize,
+    users: userModel(sequelize, DataTypes)
 }
 
 // force: false, Don't keep creating new database tables whenever restart the server.
