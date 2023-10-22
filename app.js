@@ -4,6 +4,7 @@ require("dotenv").config();
 require("express-async-errors");
 const {db} = require("./models/index");
 const notFoundMiddleWare = require("./middlewares/notFound");
+const authenticationMiddleWare = require("./middlewares/auth");
 const errorHandlerMiddleWare = require("./middlewares/globalErrorHandler");
 const auth = require("./routes/authRouter");
 
@@ -15,6 +16,7 @@ app.use(express.json());
 
 // routes
 app.use("/api/auth", auth);
+app.use(authenticationMiddleWare);
 
 app.use(notFoundMiddleWare);
 app.use(errorHandlerMiddleWare);

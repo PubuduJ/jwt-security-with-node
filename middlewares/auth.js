@@ -15,3 +15,5 @@ const authenticationMiddleWare = async (req, res, next) => {
         throw new UnauthorizedError("Not authorized to access this route");
     }
 }
+
+module.exports = authenticationMiddleWare;
