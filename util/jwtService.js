@@ -5,4 +5,8 @@ const generateToken = (user) => {
     return jwt.sign(jwtInfo, process.env.JWT_SECRET, {expiresIn: "1d"});
 }
 
-module.exports = {generateToken};
+const verifyToken = (token) => {
+    return jwt.verify(token, process.env.JWT_SECRET);
+}
+
+module.exports = {generateToken, verifyToken};
