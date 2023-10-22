@@ -5,12 +5,16 @@ require("express-async-errors");
 const {db} = require("./models/index");
 const notFoundMiddleWare = require("./middlewares/notFound");
 const errorHandlerMiddleWare = require("./middlewares/globalErrorHandler");
+const auth = require("./routes/authRouter");
 
 const app = express();
 
 // middleware
 app.use(cors());
 app.use(express.json());
+
+// routes
+app.use("/api/auth", auth);
 
 app.use(notFoundMiddleWare);
 app.use(errorHandlerMiddleWare);
