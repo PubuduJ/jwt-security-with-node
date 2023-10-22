@@ -7,13 +7,6 @@ class ConflictError extends Error {
   }
 }
 
-class BadRequestError extends Error {
-  constructor(message) {
-    super(message)
-    this.statusCode = StatusCodes.BAD_REQUEST
-  }
-}
-
 class UnauthorizedError extends Error {
   constructor(message) {
     super(message)
@@ -21,4 +14,4 @@ class UnauthorizedError extends Error {
   }
 }
 
-module.exports = {ConflictError, BadRequestError, UnauthorizedError};
+module.exports = {ConflictError, UnauthorizedError};

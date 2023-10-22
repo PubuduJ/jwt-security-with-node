@@ -1,8 +1,8 @@
 const {db} = require("../models/index");
 const {StatusCodes} = require("http-status-codes");
-const passwordEncoder = require("../util/passwordEncoder");
+const {hashPassword, checkPassword} = require("../util/bycryptService");
 const {generateToken} = require("../util/jwtService");
-const {ConflictError, BadRequestError} = require("../errors/errors");
+const {ConflictError, UnauthorizedError} = require("../errors/errors");
 
 const User = db.users;
 const sequelize = db.sequelize;
@@ -14,7 +14,7 @@ const register = async (req, res) => {
         if (!availability) {
             const user = req.body;
             user.role = "USER";
-            user.password = await passwordEncoder(user.password);
+            user.password = await hashPassword(user.password);
             await User.create(user);
             const token = generateToken(user);
             await t.commit();
@@ -30,10 +30,14 @@ const register = async (req, res) => {
 const authenticate = async (req, res) => {
     const user = await User.findOne({where: {email: req.body.email}});
     if (user) {
-        const token = generateToken(user);
-        return res.status(StatusCodes.OK).json({token: token});
+        const isValid = await checkPassword(req.body.password, user.password);
+        if (isValid) {
+            const token = generateToken(user);
+            return res.status(StatusCodes.OK).json({token: token});
+        }
+        throw new UnauthorizedError("Invalid username or password");
     }
-    throw new BadRequestError("User does not exist");
+    throw new UnauthorizedError("Invalid username or password");
 }
 
 module.exports = {register, authenticate};
