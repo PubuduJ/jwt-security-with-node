@@ -14,4 +14,11 @@ class BadRequestError extends Error {
   }
 }
 
-module.exports = {ConflictError, BadRequestError};
+class UnauthorizedError extends Error {
+  constructor(message) {
+    super(message)
+    this.statusCode = StatusCodes.UNAUTHORIZED
+  }
+}
+
+module.exports = {ConflictError, BadRequestError, UnauthorizedError};
