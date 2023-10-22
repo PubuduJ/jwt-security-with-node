@@ -17,6 +17,7 @@ app.use(express.json());
 // routes
 app.use("/api/auth", auth);
 app.use(authenticationMiddleWare);
+app.use("/api/demo-controller");
 
 app.use(notFoundMiddleWare);
 app.use(errorHandlerMiddleWare);
