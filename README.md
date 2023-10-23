@@ -43,7 +43,7 @@ Make sure to create a **jwt_demo_db** database in the MySQL community server.
 3. Open the terminal from the project directory and run `npm install` and `npm start` to run the server.
 
 ## Version
-v1.0.0
+v1.1.0
 
 ## License
 Copyright &copy; 2023 [Pubudu Janith](https://www.linkedin.com/in/pubudujanith/). All Rights Reserved.<br>

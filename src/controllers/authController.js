@@ -1,4 +1,4 @@
-const {db} = require("../models/index");
+const {db} = require("../models");
 const {StatusCodes} = require("http-status-codes");
 const {hashPassword, checkPassword} = require("../util/bycryptService");
 const {generateToken} = require("../util/jwtService");
