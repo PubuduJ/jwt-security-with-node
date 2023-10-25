@@ -15,7 +15,7 @@ const register = async (req, res) => {
             const user = req.body;
             user.role = "USER";
             user.password = await hashPassword(user.password);
-            await User.create(user);
+            await User.create(user, {transaction: t});
             const token = generateToken(user);
             await t.commit();
             return res.status(StatusCodes.CREATED).json({token: token});
